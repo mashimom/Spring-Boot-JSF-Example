@@ -23,48 +23,48 @@ import com.sun.faces.config.ConfigureListener;
 @ComponentScan
 public class Application {
 
-	public static void main(String[] args) {
-		ConfigurableApplicationContext context = SpringApplication
-				.run(Application.class);
-	}
+    public static void main(String[] args) {
+        ConfigurableApplicationContext context = SpringApplication
+                .run(Application.class);
+    }
 
-	@Bean
-	public static ViewScope viewScope() {
-		return new ViewScope();
-	}
+    @Bean
+    public static ViewScope viewScope() {
+        return new ViewScope();
+    }
 
-	/**
-	 * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller
-	 * beans
-	 */
-	@Bean
-	public static CustomScopeConfigurer scopeConfigurer() {
-		CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("view", viewScope());
-		configurer.setScopes(hashMap);
-		return configurer;
-	}
+    /**
+     * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller
+     * beans
+     */
+    @Bean
+    public static CustomScopeConfigurer scopeConfigurer() {
+        CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put("view", viewScope());
+        configurer.setScopes(hashMap);
+        return configurer;
+    }
 
-	/*
-	 * Below sets up the Faces Servlet for Spring Boot
-	 */
-	@Bean
-	public FacesServlet facesServlet() {
-		return new FacesServlet();
-	}
+    /*
+     * Below sets up the Faces Servlet for Spring Boot
+     */
+    @Bean
+    public FacesServlet facesServlet() {
+        return new FacesServlet();
+    }
 
-	@Bean
-	public ServletRegistrationBean facesServletRegistration() {
-		ServletRegistrationBean registration = new ServletRegistrationBean(
-				facesServlet(), "*.xhtml");
-		registration.setName("FacesServlet");
-		return registration;
-	}
+    @Bean
+    public ServletRegistrationBean facesServletRegistration() {
+        ServletRegistrationBean registration = new ServletRegistrationBean(
+                facesServlet(), "*.xhtml");
+        registration.setName("FacesServlet");
+        return registration;
+    }
 
-	@Bean
-	public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-		return new ServletListenerRegistrationBean<ConfigureListener>(
-				new ConfigureListener());
-	}
+    @Bean
+    public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
+        return new ServletListenerRegistrationBean<ConfigureListener>(
+                new ConfigureListener());
+    }
 }

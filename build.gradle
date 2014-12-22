@@ -5,7 +5,8 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.4.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE")
+        classpath 'org.springframework:springloaded:1.2.1.RELEASE'
     }
 }
 
@@ -13,6 +14,14 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'idea'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}
 
 repositories {
     mavenLocal()
@@ -24,8 +33,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     
     compile group: "org.primefaces", name: "primefaces", version: "5.0"
-    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.7"
-    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.7"
+    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.8"
+    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.8"
     compile group: 'javax.el', name: 'el-api', version: '1.0'
     compile "org.glassfish.web:el-impl:2.2"
     
@@ -37,5 +46,5 @@ dependencies {
 }
 
 task wrapper(type: Wrapper) {
-    gradleVersion = '1.11'
+    gradleVersion = '2.2.1'
 }
