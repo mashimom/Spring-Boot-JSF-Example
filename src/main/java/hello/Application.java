@@ -3,10 +3,13 @@ package hello;
 import java.util.HashMap;
 
 import javax.faces.webapp.FacesServlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.embedded.ServletContextInitializer;
 import org.springframework.boot.context.embedded.ServletListenerRegistrationBean;
 import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -46,9 +49,17 @@ public class Application {
         return configurer;
     }
 
-    /*
-     * Below sets up the Faces Servlet for Spring Boot
-     */
+    @Bean
+    public ServletContextInitializer initializer() {
+        return new ServletContextInitializer() {
+            @Override
+            public void onStartup(ServletContext servletContext) throws ServletException {
+                servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
+                servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
+            }
+        };
+    }
+
     @Bean
     public FacesServlet facesServlet() {
         return new FacesServlet();

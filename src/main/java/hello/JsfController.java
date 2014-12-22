@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.faces.context.FacesContext;
+import java.io.Serializable;
+
 @RestController
 @Scope("view")
-public class JsfController {
+public class JsfController implements Serializable {
     @Autowired
     TestService testService;
 
@@ -19,13 +22,10 @@ public class JsfController {
 
     private String jsfTestString = "This string came from server side";
 
-    /**
-     * This method demonstrates grabbing a vlue from the view scope and the
-     * session scope.
-     * <p/>
-     * Something I wanted to see to verify the same Spring context is managing
-     * each scope.
-     */
+    public String doSomething(Object o, Object o1, Object o2) {
+        return testService.getMessage() + " " + o + " " + o1 + " "+ o2 + " "+ counter++;
+    }
+
     public void doSomething() {
         setJsfTestString(testService.getMessage() + " " + counter++);
     }

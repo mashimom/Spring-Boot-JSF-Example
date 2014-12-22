@@ -16,13 +16,6 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
-    }
-}
-
 repositories {
     mavenLocal()
     mavenCentral()
@@ -35,16 +28,21 @@ dependencies {
     compile group: "org.primefaces", name: "primefaces", version: "5.0"
     compile group: "com.sun.faces", name: "jsf-api", version: "2.2.8"
     compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.8"
-    compile group: 'javax.el', name: 'el-api', version: '1.0'
-    compile "org.glassfish.web:el-impl:2.2"
-    
-    compile "org.apache.tomcat.embed:tomcat-embed-core:8.0.9"
-    compile "org.apache.tomcat.embed:tomcat-embed-logging-juli:7.0.54"
-    compile "org.apache.tomcat.embed:tomcat-embed-jasper:7.0.54"
-    
+
+    compile "org.apache.tomcat.embed:tomcat-embed-jasper"
     testCompile("junit:junit")
+}
+
+defaultTasks 'bootRun'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
 }
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.2.1'
 }
+
