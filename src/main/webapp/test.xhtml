@@ -18,5 +18,25 @@
     <div width="100%">
         <p:chart type="line" model="#{jsfController.areaModel}" style="height:300px; width: 600px;"/>
     </div>
+
+    #{component}: the current UIComponent <br/>
+    #{facesContext}: the current FacesContext<br/>
+    #{view}: the current UIViewRoot<br/>
+    #{request}: the current HttpServletRequest<br/>
+    #{session}: the current HttpSession<br/>
+    #{application}: the ServletContext<br/>
+    #{flash}: the current Flash (which also implements map)<br/>
+    #{cc}: the current composite component<br/>
+    #{requestScope}: the current request attribute map<br/>
+    #{viewScope}: the current view attribute map<br/>
+    #{sessionScope}: the current session attribute map<br/>
+    #{applicationScope}: the application attribute map<br/>
+    #{initParam}: the current context parameter map<br/>
+    #{param}: the current request parameter map<br/>
+    #{paramValues}: the current request parameter values map<br/>
+    #{header}: the current request header map<br/>
+    #{headerValues}: the current request header values map<br/>
+    #{cookie}: the current request cookie map<br/>
+    #{resource}: converts a JSF resource identifier to a concrete resource URL. See chapter 5.6.2.5 of JSF specification<br/>
 </h:body>
 </html>

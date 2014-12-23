@@ -22,12 +22,13 @@ repositories {
     maven { url "http://repo.spring.io/libs-release" }
 }
 
+// asd
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
-    
-    compile group: "org.primefaces", name: "primefaces", version: "5.0"
-    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.8"
-    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.8"
+
+    compile group: "org.primefaces", name: "primefaces", version: "5.2-SNAPSHOT"
+    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.9"
+    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.9"
 
     compile "org.apache.tomcat.embed:tomcat-embed-jasper"
     testCompile("junit:junit")
