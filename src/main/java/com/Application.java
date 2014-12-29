@@ -1,11 +1,6 @@
 package com;
 
-import java.util.HashMap;
-
-import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-
+import com.sun.faces.config.ConfigureListener;
 import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,10 +11,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-
 import scope.ViewScope;
 
-import com.sun.faces.config.ConfigureListener;
+import javax.faces.webapp.FacesServlet;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import java.util.HashMap;
 
 @Configuration
 @EnableAutoConfiguration

@@ -1,17 +1,19 @@
 package com.service;
 
 import com.domain.City;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-public interface CityRepository extends Repository<City, Long> {
+import java.util.List;
 
-    Page<City> findAll(Pageable pageable);
+@RepositoryRestResource(collectionResourceRel = "city", path = "city")
+public interface CityRepository extends PagingAndSortingRepository<City, Long> {
 
-    Page<City> findByNameContainingAndCountryContainingAllIgnoringCase(String name,
-                                                                       String country, Pageable pageable);
-    City findByNameAndCountryAllIgnoringCase(String name, String country);
+    List<City> findByNameContainingAndCountryContainingAllIgnoringCase(@Param("name") String name,
+                                                                       @Param("country") String country);
 
-    City save(City entity);
+    List<City> findByNameAndCountryAllIgnoringCase(@Param("name") String name,
+                                                   @Param("country") String country);
+
 }

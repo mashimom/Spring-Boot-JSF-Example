@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>User Page</title>
@@ -13,7 +11,8 @@
             <p:poll delay="5000" interval="1" autoStart="true" async="true" update="@form" widgetVar="pp"/>
             Last updated: #{now}<br/>
             <p:chart type="line" model="#{chartController.areaModel}" style="height:300px; width: 600px;"/>
-            <p:commandButton value="New random chart" id="ajax" update="@form" actionListener="#{chartController.newChart()}"
+            <p:commandButton value="New random chart" id="ajax" update="@form"
+                             actionListener="#{chartController.newChart()}"
                              styleClass="ui-priority-primary"/><br/>
             <br/>
         </h:form>

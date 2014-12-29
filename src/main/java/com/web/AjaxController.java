@@ -18,7 +18,7 @@ public class AjaxController implements Serializable {
     private String jsfTestString = "This string came from server side";
 
     public String doSomething(Object o, Object o1, Object o2) {
-        return testService.getMessage() + " " + o + " " + o1 + " "+ o2 + " "+ counter++;
+        return testService.getMessage() + " " + o + " " + o1 + " " + o2 + " " + counter++;
     }
 
     public void doSomething() {

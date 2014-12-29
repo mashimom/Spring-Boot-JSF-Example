@@ -37,7 +37,7 @@ public class ChartController implements Serializable {
         s1.set("24/1", new Random().nextInt(300));
 
         LineChartSeries s2 = new LineChartSeries();
-  //      girls.setFill(true);
+        //      girls.setFill(true);
         s2.setLabel("2015");
         s2.set("20/1", new Random().nextInt(300));
         s2.set("21/1", new Random().nextInt(300));
