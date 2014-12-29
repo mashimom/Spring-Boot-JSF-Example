@@ -9,7 +9,7 @@
 </h:head>
 <h:body style="padding:20px">
     <h:form id="test">
-        <h:outputLabel value="#{ajaxController.jsfTestString}"></h:outputLabel><br/>
+        <h:outputLabel value="#{ajaxController.jsfTestString}"/><br/>
         <br/>
         <p:commandButton value="Ajax Submit" id="ajax" update="@form" actionListener="#{ajaxController.doSomething()}"
                          styleClass="ui-priority-primary"/><br/>
