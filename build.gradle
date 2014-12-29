@@ -11,8 +11,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'idea'
 
@@ -22,9 +20,10 @@ repositories {
     maven { url "http://repo.spring.io/libs-release" }
 }
 
-// asd
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+    compile("org.hsqldb:hsqldb")
 
     compile group: "org.primefaces", name: "primefaces", version: "5.2-SNAPSHOT"
     compile group: "com.sun.faces", name: "jsf-api", version: "2.2.9"
@@ -39,7 +38,7 @@ defaultTasks 'bootRun'
 idea {
     module {
         inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
+        outputDir = file("$buildDir/classes/main")
     }
 }
 

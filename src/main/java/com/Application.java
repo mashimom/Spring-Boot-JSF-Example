@@ -1,4 +1,4 @@
-package hello;
+package com;
 
 import java.util.HashMap;
 
@@ -28,7 +28,7 @@ public class Application {
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication
-                .run(Application.class);
+                .run(Application.class, args);
     }
 
     @Bean
@@ -36,10 +36,6 @@ public class Application {
         return new ViewScope();
     }
 
-    /**
-     * Allows the use of @Scope("view") on Spring @Component, @Service and @Controller
-     * beans
-     */
     @Bean
     public static CustomScopeConfigurer scopeConfigurer() {
         CustomScopeConfigurer configurer = new CustomScopeConfigurer();
@@ -54,7 +50,6 @@ public class Application {
         return new ServletContextInitializer() {
             @Override
             public void onStartup(ServletContext servletContext) throws ServletException {
-                servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
                 servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
             }
         };
@@ -78,4 +73,5 @@ public class Application {
         return new ServletListenerRegistrationBean<ConfigureListener>(
                 new ConfigureListener());
     }
+
 }
