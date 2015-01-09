@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.0.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
         classpath 'org.springframework:springloaded:1.2.1.RELEASE'
     }
 }
@@ -41,6 +41,7 @@ idea {
     module {
         inheritOutputDirs = false
         outputDir = file("$buildDir/classes/main")
+        downloadSources = true
     }
 }
 
