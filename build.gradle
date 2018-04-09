@@ -1,23 +1,30 @@
 plugins {
   id 'build-announcements'
   id 'build-dashboard'
+  id 'com.github.ben-manes.versions' version '0.17.0'
+  id 'groovy'
   id 'idea'
+  id 'io.spring.dependency-management' version '1.0.5.RELEASE'
   id 'jacoco'
   id 'java'
-  id 'project-report'
+  id 'maven'
+  id 'nebula.facet' version '3.4.1'
   id 'org.springframework.boot' version '2.0.1.RELEASE'
-  id 'io.spring.dependency-management' version '0.5.3.RELEASE'
+  id 'pmd'
+  id 'project-report'
 }
 
 repositories {
     mavenLocal()
     jcenter()
-    mavenCentral()
-    maven { url "http://repo.spring.io/libs-release" }
-    maven { url "https://maven.java.net/content/repositories/snapshots" }
+//    mavenCentral()
+//    maven { url "http://repo.spring.io/libs-release" }
+//    maven { url "https://maven.java.net/content/repositories/snapshots" }
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok'
+    
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile 'org.springframework.boot:spring-boot-starter-data-rest'
