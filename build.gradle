@@ -1,38 +1,35 @@
-buildscript {
-    repositories {
-        maven { url "http://repo.spring.io/libs-release" }
-        mavenLocal()
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.1.RELEASE")
-        classpath 'org.springframework:springloaded:1.2.1.RELEASE'
-    }
+plugins {
+  id 'build-announcements'
+  id 'build-dashboard'
+  id 'idea'
+  id 'jacoco'
+  id 'java'
+  id 'project-report'
+  id 'org.springframework.boot' version '2.0.1.RELEASE'
+  id 'io.spring.dependency-management' version '0.5.3.RELEASE'
 }
-
-apply plugin: 'java'
-apply plugin: 'spring-boot'
-apply plugin: 'idea'
 
 repositories {
     mavenLocal()
+    jcenter()
     mavenCentral()
     maven { url "http://repo.spring.io/libs-release" }
     maven { url "https://maven.java.net/content/repositories/snapshots" }
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-data-rest")
-    runtime("org.hsqldb:hsqldb")
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile 'org.springframework.boot:spring-boot-starter-data-rest'
 
-    compile group: "org.primefaces", name: "primefaces", version: "5.2-SNAPSHOT"
-    compile group: "com.sun.faces", name: "jsf-api", version: "2.2.10-SNAPSHOT"
-    compile group: "com.sun.faces", name: "jsf-impl", version: "2.2.10-SNAPSHOT"
+    compile 'org.primefaces:primefaces:5.+'
+    compile 'com.sun.faces:jsf-api:2.2.+'
+    compile 'com.sun.faces:jsf-impl:2.2.+'
 
-    runtime "org.apache.tomcat.embed:tomcat-embed-jasper"
-    testCompile("junit:junit")
+    runtime 'org.hsqldb:hsqldb'
+    runtime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
+    testCompile 'junit:junit'
 }
 
 defaultTasks 'bootRun'
@@ -44,8 +41,3 @@ idea {
         downloadSources = true
     }
 }
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.2.1'
-}
-
