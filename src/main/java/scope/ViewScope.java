@@ -16,18 +16,15 @@ import java.util.Map;
  *         team)(http://blog.primefaces.org/?p=702)
  */
 public class ViewScope implements Scope {
-    public Object get(String name, ObjectFactory<? extends Object> objectFactory) {
+    public Object get(String name, ObjectFactory<?> objectFactory) {
         Map<String, Object> viewMap = FacesContext.getCurrentInstance()
                 .getViewRoot().getViewMap();
-        Object obj;
         if (viewMap.containsKey(name)) {
-            obj = viewMap.get(name);
-        } else {
-            Object object = objectFactory.getObject();
-            viewMap.put(name, object);
-            obj = object;
+            return viewMap.get(name);
         }
-        return obj;
+        Object object = objectFactory.getObject();
+        viewMap.put(name, object);
+        return object;
     }
 
     public Object remove(String name) {

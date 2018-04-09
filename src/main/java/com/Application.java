@@ -14,8 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import scope.ViewScope;
 
 import javax.faces.webapp.FacesServlet;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
 import java.util.HashMap;
 
 @Configuration
@@ -24,10 +22,12 @@ import java.util.HashMap;
 public class Application {
 
     public static void main(String[] args) {
+        //noinspection unused
         ConfigurableApplicationContext context = SpringApplication
                 .run(Application.class, args);
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Bean
     public static ViewScope viewScope() {
         return new ViewScope();
@@ -36,38 +36,36 @@ public class Application {
     @Bean
     public static CustomScopeConfigurer scopeConfigurer() {
         CustomScopeConfigurer configurer = new CustomScopeConfigurer();
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("view", viewScope());
         configurer.setScopes(hashMap);
         return configurer;
     }
 
+    @SuppressWarnings("unused")
     @Bean
     public ServletContextInitializer initializer() {
-        return new ServletContextInitializer() {
-            @Override
-            public void onStartup(ServletContext servletContext) throws ServletException {
-                servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
-            }
-        };
+        return servletContext -> servletContext.setInitParameter("javax.faces.PROJECT_STAGE", "Development");
     }
 
+    @SuppressWarnings("WeakerAccess")
     @Bean
     public FacesServlet facesServlet() {
         return new FacesServlet();
     }
 
+    @SuppressWarnings("unused")
     @Bean
     public ServletRegistrationBean facesServletRegistration() {
-        ServletRegistrationBean registration = new ServletRegistrationBean(
-                facesServlet(), "*.xhtml");
+        ServletRegistrationBean<FacesServlet> registration =
+                new ServletRegistrationBean<>(facesServlet(), "*.xhtml");
         registration.setName("FacesServlet");
         return registration;
     }
 
     @Bean
     public ServletListenerRegistrationBean<ConfigureListener> jsfConfigureListener() {
-        return new ServletListenerRegistrationBean<ConfigureListener>(
+        return new ServletListenerRegistrationBean<>(
                 new ConfigureListener());
     }
 

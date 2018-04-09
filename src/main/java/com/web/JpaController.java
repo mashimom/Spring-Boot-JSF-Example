@@ -21,7 +21,7 @@ public class JpaController implements Serializable {
     @PostConstruct
     public void init() {
         cityRepository.save(new City("Göteborg", "", "Sweden", ""));
-        cities = cityRepository.findAll(new PageRequest(0, 100));
+        cities = cityRepository.findAll(PageRequest.of(0, 100));
         System.out.println("cities.getTotalElements() = " + cities.getTotalElements());
     }
 
