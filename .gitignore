@@ -6,3 +6,6 @@ build/
 .idea/
 Spring-Boot-JSF-Example.iml
 local.*
+*.iml
+*.ipr
+*.iws
